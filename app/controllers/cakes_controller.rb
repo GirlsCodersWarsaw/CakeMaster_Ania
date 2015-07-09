@@ -8,10 +8,17 @@ class CakesController < ApplicationController
   end
 
   def create
-    @cake = Cake.new
+    @cake = Cake.new cake_params
     if @cake.save
-      redirect_to @cake
+      redirect_to root_path
+    else
+      render "new"
     end
-    end
+  end
+
+  private
+  def cake_params
+    params.require(:cake).permit(:name, :kind, :description)
+  end
 end
 
