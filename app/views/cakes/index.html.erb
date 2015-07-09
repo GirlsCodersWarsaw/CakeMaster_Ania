@@ -1,3 +1,15 @@
-<% @cakes.each do |cake| %>
-    <p><b><%= cake.name %></b>, <%= cake.kind %>, <i><%= cake.description %></i></p>
-<% end %>
+<table>
+  <tr>
+    <th>Nazwa ciasta</th>
+    <th>Rodzaj ciasta</th>
+    <th>Przepis</th>
+  </tr>
+  <% @cakes.each do |cake| %>
+      <tr>
+        <td><%= cake.name %></td>
+        <td><%= cake.kind %></td>
+        <td><%= cake.description %></td>
+      </tr>
+  <% end %>
+</table>
+
