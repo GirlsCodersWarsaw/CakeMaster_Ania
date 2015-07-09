@@ -21,4 +21,3 @@ class CakesController < ApplicationController
     params.require(:cake).permit(:name, :kind, :description)
   end
 end
-
