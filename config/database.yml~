@@ -1,6 +1,6 @@
 development:
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
   database: cake_master_development
   pool: 5
   username: pguser
@@ -8,7 +8,7 @@ development:
 
 test: &TEST
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
   database: cake_master_test
   pool: 5
   username: pguser
