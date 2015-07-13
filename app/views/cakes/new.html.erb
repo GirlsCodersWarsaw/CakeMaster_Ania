@@ -1,3 +1,5 @@
+<%= render "flash" %>
+
 <h1>Dodaj nowe ciasto:</h1>
 <%= form_for @cake do |form| %>
     <p><%= form.label("nazwa") %></p>
@@ -7,5 +9,5 @@
 
     <p><%= form.label("przepis") %></p>
     <p><%= form.text_area :description %></p>
-    <p><%= form.submit %></p>
+    <p><%= form.submit "Dodaj ciasto" %></p>
 <% end %>

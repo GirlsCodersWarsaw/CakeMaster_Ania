@@ -10,9 +10,11 @@ class CakesController < ApplicationController
   def create
     @cake = Cake.new cake_params
     if @cake.save
+      flash[:notice] = "Gratulacje! Dodałeś ciasto."
       redirect_to root_path
     else
-      render "new"
+      flash.now[:error] = "Wypełnij wszystkie pola."
+      render action: "new"
     end
   end
 
