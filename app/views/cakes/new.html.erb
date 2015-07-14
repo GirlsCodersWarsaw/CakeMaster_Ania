@@ -1,0 +1,11 @@
+<h1>Dodaj nowe ciasto:</h1>
+<%= form_for @cake do |form| %>
+    <p><%= form.label("nazwa") %></p>
+    <p><%= form.text_field :name %></p>
+
+    <p><%= form.select :kind, options_for_select([["wybierz", ""], "tasty", "non-gluten", "vegan"]) %></p>
+
+    <p><%= form.label("przepis") %></p>
+    <p><%= form.text_area :description %></p>
+    <p><%= form.submit "Dodaj ciasto" %></p>
+<% end %>
