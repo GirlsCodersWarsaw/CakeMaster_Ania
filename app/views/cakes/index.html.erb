@@ -6,7 +6,7 @@
   </tr>
   <% @cakes.each do |cake| %>
       <tr>
-        <td><%= cake.name %></td>
+        <td><%= link_to cake.name, edit_cake_path(cake) %></td>
         <td><%= cake.kind %></td>
         <td><%= cake.description %></td>
       </tr>
