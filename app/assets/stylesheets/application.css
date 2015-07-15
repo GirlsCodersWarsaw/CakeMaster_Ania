@@ -1,3 +1,9 @@
+.error {
+    border:3px solid red;
+    color:red;
+}
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
