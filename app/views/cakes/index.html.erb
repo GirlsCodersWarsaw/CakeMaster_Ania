@@ -4,15 +4,8 @@
     <th>Rodzaj ciasta</th>
     <th>Przepis</th>
   </tr>
-  <% @cakes.each do |cake| %>
-      <tr>
-        <td><%= link_to cake.name, edit_cake_path(cake) %></td>
-        <td><%= cake.kind %></td>
-        <td><%= cake.description %></td>
-      </tr>
-  <% end %>
+      <%= render partial: "cake", collection: @cakes %>
 </table>
 <p><button><%= link_to "Dodaj ciasto", new_cake_path %></button></p>
-
 
 
