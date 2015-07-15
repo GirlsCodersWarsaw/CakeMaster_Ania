@@ -18,6 +18,32 @@ class CakesController < ApplicationController
     end
   end
 
+  def edit
+    @cake = Cake.find(params[:id])
+  end
+
+  def update
+      @cake = Cake.find(params[:id])
+      if @cake.update(cake_params)
+        flash[:notice] = "Zmiany zostały zapisane."
+        redirect_to root_path
+      else
+        flash[:notice] = "Nie dokonałeś zmian."
+        render "edit"
+      end
+  end
+
+  def destroy
+    @cake = Cake.find(params[:id])
+    if @cake.destroy
+      flash[:notice] = "Usunąłeś ciasto."
+      redirect_to root_path
+    else
+      flash[:notice] = "Ciasto nie zostało usunięte."
+      redirect_to root_path
+      end
+  end
+
   private
   def cake_params
     params.require(:cake).permit(:name, :kind, :description)
