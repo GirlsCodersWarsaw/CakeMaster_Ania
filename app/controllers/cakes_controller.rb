@@ -13,7 +13,7 @@ class CakesController < ApplicationController
       flash[:notice] = "Gratulacje! Dodałeś ciasto."
       redirect_to root_path
     else
-      flash.now[:error] = "Wypełnij wszystkie pola."
+      flash.now[:alert] = "Wypełnij wszystkie pola."
       render action: "new"
     end
   end
