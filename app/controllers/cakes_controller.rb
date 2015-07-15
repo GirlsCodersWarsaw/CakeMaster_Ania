@@ -35,13 +35,9 @@ class CakesController < ApplicationController
 
   def destroy
     @cake = Cake.find(params[:id])
-    if @cake.destroy
-      flash[:notice] = "Usunąłeś ciasto."
-      redirect_to root_path
-    else
-      flash[:notice] = "Ciasto nie zostało usunięte."
-      redirect_to root_path
-      end
+    @cake.destroy
+    flash[:notice] = "Usunąłeś ciasto."
+    redirect_to root_path
   end
 
   private
