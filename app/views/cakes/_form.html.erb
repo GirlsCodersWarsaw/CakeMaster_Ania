@@ -1,11 +1,29 @@
 <%= form_for @cake do |form| %>
     <p><%= form.label("nazwa") %></p>
     <p><%= form.text_field :name %></p>
-    <%= @cake.errors[:name] %>
+    <% if @cake.errors[:name].any? %>
+        <ul>
+          <% @cake.errors[:name].each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
     <p><%= form.select :kind, options_for_select([["wybierz", ""], "tasty", "non-gluten", "vegan"]) %></p>
-    <%= @cake.errors[:kind] %>
+    <% if @cake.errors[:kind].any? %>
+        <ul>
+          <% @cake.errors[:kind].each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
     <p><%= form.label("przepis") %></p>
     <p><%= form.text_area :description %></p>
-    <%= @cake.errors[:description] %>
+    <% if @cake.errors[:description].any? %>
+        <ul>
+          <% @cake.errors[:description].each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
     <p><%= form.submit "Wyślij" %></p>
 <% end %>
