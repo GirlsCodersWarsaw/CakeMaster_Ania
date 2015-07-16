@@ -1,4 +1,6 @@
 class CakesController < ApplicationController
+  helper ErrorsHelper
+
   def index
     @cakes = Cake.all
   end
@@ -45,3 +47,4 @@ class CakesController < ApplicationController
     params.require(:cake).permit(:name, :kind, :description)
   end
 end
+
