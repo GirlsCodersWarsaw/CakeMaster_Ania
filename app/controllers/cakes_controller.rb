@@ -1,4 +1,5 @@
 class CakesController < ApplicationController
+
   def index
     @cakes = Cake.all
   end
@@ -13,7 +14,7 @@ class CakesController < ApplicationController
       flash[:notice] = "Gratulacje! Dodałeś ciasto."
       redirect_to root_path
     else
-      flash.now[:error] = "Wypełnij wszystkie pola."
+      flash.now[:alert] = "Wypełnij wszystkie pola."
       render action: "new"
     end
   end
@@ -33,8 +34,16 @@ class CakesController < ApplicationController
     end
   end
 
+  def destroy
+    @cake = Cake.find(params[:id])
+    @cake.destroy
+    flash[:notice] = "Usunąłeś ciasto."
+    redirect_to root_path
+  end
+
   private
   def cake_params
     params.require(:cake).permit(:name, :kind, :description)
   end
 end
+

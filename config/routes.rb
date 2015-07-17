@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'cakes#index'
-  resources :cakes, only: [:index, :new, :create, :edit, :update]
+  resources :cakes
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,9 +1,16 @@
 .error {
   border:3px solid red;
   color:red;
+  width:300px;
 }
 
+.notice {
+  color:green;
+}
 
+.alert {
+  color:red;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
