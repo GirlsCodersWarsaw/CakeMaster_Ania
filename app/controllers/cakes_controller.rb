@@ -1,5 +1,4 @@
 class CakesController < ApplicationController
-  helper ErrorsHelper
 
   def index
     @cakes = Cake.all
@@ -25,14 +24,14 @@ class CakesController < ApplicationController
   end
 
   def update
-      @cake = Cake.find(params[:id])
-      if @cake.update(cake_params)
-        flash[:notice] = "Zmiany zostały zapisane."
-        redirect_to root_path
-      else
-        flash[:notice] = "Nie dokonałeś zmian."
-        render "edit"
-      end
+    @cake = Cake.find(params[:id])
+    if @cake.update(cake_params)
+      flash[:notice] = "Zmiany zostały zapisane."
+      redirect_to root_path
+    else
+      flash[:notice] = "Nie dokonałeś zmian."
+      render "edit"
+    end
   end
 
   def destroy

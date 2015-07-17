@@ -1,11 +1,11 @@
 <%= form_for @cake do |form| %>
-    <p><%= form.label("nazwa") %></p>
-    <p><%= form.text_field :name %></p>
-    <%= resource_errors_for(@cake, :name) %>
-    <p><%= form.select :kind, options_for_select([["wybierz", ""], "tasty", "non-gluten", "vegan"]) %></p>
-    <%= resource_errors_for(@cake, :kind) %>
-    <p><%= form.label("przepis") %></p>
-    <p><%= form.text_area :description %></p>
-    <%= resource_errors_for(@cake, :description) %>
-    <p><%= form.submit "Wyślij" %></p>
+  <p><%= form.label("nazwa") %></p>
+  <p><%= form.text_field :name %></p>
+  <%= resource_errors_for(@cake, :name) %>
+  <p><%= form.select :kind, options_for_select([["wybierz", ""], "tasty", "non-gluten", "vegan"]) %></p>
+  <%= resource_errors_for(@cake, :kind) %>
+  <p><%= form.label("przepis") %></p>
+  <p><%= form.text_area :description %></p>
+  <%= resource_errors_for(@cake, :description) %>
+  <p><%= form.submit "Wyślij" %></p>
 <% end %>
