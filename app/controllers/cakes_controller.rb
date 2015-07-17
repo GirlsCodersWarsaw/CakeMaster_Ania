@@ -24,14 +24,14 @@ class CakesController < ApplicationController
 
   def update
     @cake = Cake.find(params[:id])
-      if @cake.update(cake_params)
-        flash[:notice] = "Zmiany zostały zapisane."
-        redirect_to root_path
-      else
-        flash[:notice] = "Nie dokonałeś zmian."
-        render "edit"
-      end
+    if @cake.update(cake_params)
+      flash[:notice] = "Zmiany zostały zapisane."
+      redirect_to root_path
+    else
+      flash[:notice] = "Nie dokonałeś zmian."
+      render "edit"
     end
+  end
 
   private
   def cake_params
