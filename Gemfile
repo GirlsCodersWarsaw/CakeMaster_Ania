@@ -45,6 +45,7 @@ group :development, :test do
 
   gem 'carrierwave'
   gem 'mini_magick', '~> 3.7'
+  gem 'carrierwave-dropbox'
 
 end
 

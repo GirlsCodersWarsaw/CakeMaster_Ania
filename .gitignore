@@ -19,3 +19,6 @@
 /.idea
 /config/*.yml
 .keep
+.jpg
+.jpeg
+.png
