@@ -19,6 +19,4 @@
 /.idea
 /config/*.yml
 .keep
-.jpg
-.jpeg
-.png
+/public/uploads/cake/*
