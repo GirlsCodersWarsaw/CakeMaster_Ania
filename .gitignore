@@ -19,4 +19,6 @@
 /.idea
 /config/*.yml
 .keep
-/public/uploads/cake/*
+
+/public/uploads/*
+app/assets/images/*

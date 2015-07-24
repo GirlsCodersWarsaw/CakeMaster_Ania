@@ -8,5 +8,6 @@
   <p><%= form.text_area :description %></p>
   <%= resource_errors_for(@cake, :description) %>
   <p><%= form.file_field :image %></p>
+  <p><label><%= form.check_box :remove_image %>Usuń zdjęcie</label></p>
   <p><%= form.submit "Wyślij" %></p>
 <% end %>
