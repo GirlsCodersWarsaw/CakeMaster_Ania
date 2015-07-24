@@ -1,6 +1,7 @@
 <tr>
-  <td><%= link_to cake.name, edit_cake_path(cake) %> <button><%= link_to "Usuń", cake_path(cake), method: :delete, data: {confirm: "Are you sure?"} %></button></td>
+  <td><%= link_to cake.name, edit_cake_path(cake) %></td>
   <td><%= image_tag cake.image.url(:thumb) %></td>
   <td><%= cake.kind %></td>
   <td><%= cake.description %></td>
+  <td><button><%= link_to "Usuń", cake_path(cake), method: :delete, data: {confirm: "Are you sure?"} %></button></td>
 </tr>
