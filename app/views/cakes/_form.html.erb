@@ -1,4 +1,4 @@
-<%= form_for @cake, html: { multipart: true } do |form| %>
+<%= form_for(@cake, :html => { :multipart => true }) do |form| %>
   <p><%= form.label("nazwa") %></p>
   <p><%= form.text_field :name %></p>
   <%= resource_errors_for(@cake, :name) %>
@@ -7,7 +7,12 @@
   <p><%= form.label("przepis") %></p>
   <p><%= form.text_area :description %></p>
   <%= resource_errors_for(@cake, :description) %>
-  <p><%= form.file_field :image %></p>
-  <p><label><%= form.check_box :remove_image %>Usuń zdjęcie</label></p>
+  <%= form.fields_for :cake_attachments do |p| %>
+    <div class="field">
+      <%= p.label :image %><br>
+      <%= p.file_field :image, :multiple => true, name: "cake_attachments[image][]" %>
+      <label><%= p.check_box :remove_image %>Usuń zdjęcie</label>
+    </div>
+  <% end %>
   <p><%= form.submit "Wyślij" %></p>
 <% end %>
