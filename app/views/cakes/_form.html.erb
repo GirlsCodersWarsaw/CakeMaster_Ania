@@ -9,9 +9,8 @@
   <%= resource_errors_for(@cake, :description) %>
   <%= form.fields_for :cake_attachments do |p| %>
     <div class="field">
-      <%= p.label :image %><br>
-      <%= p.file_field :image, :multiple => true, name: "cake_attachments[image][]" %>
-      <label><%= p.check_box :remove_image %>Usuń zdjęcie</label>
+      <%= p.file_field :image, :multiple => true, name: "cake_attachments[image][]" if @cake.image=present? %>
+      <%= p.check_box :remove_image %>Usuń zdjęcie
     </div>
   <% end %>
   <p><%= form.submit "Wyślij" %></p>

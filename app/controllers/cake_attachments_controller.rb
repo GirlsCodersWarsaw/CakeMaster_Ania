@@ -69,6 +69,6 @@ class CakeAttachmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cake_attachment_params
-      params.require(:cake_attachment).permit(:cake_id, :image)
+      params.require(:cake_attachment).permit(:cake_id, :image, :remove_image )
     end
 end
