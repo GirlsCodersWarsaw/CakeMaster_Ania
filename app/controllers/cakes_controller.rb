@@ -31,9 +31,9 @@ class CakesController < ApplicationController
   def update
     @cake = Cake.find(params[:id])
     if @cake.update(cake_params)
-     params[:cake_attachments]['image'].each do |img|
-     @cake_attachment = @cake.cake_attachments.create!(:image => img)
-     end
+      # params[:cake_attachments]['image'].each do |img|
+      # @cake_attachment = @cake.cake_attachments.create!(:image => img)
+      # end
       flash[:notice] = "Zmiany zostały zapisane."
       redirect_to root_path
     else
