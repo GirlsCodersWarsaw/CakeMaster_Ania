@@ -19,3 +19,5 @@
 /.idea
 /config/*.yml
 .keep
+/public/uploads/
+app/assets/images
