@@ -4,11 +4,12 @@ Rails.application.routes.draw do
 
 
   resources :cake_attachments
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'cakes#index'
+  root to: 'cakes#index'
   resources :cakes
 
   # Example of regular route:
