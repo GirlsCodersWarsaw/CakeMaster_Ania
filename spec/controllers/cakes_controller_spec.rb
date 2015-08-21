@@ -1,12 +1,23 @@
 require 'spec_helper'
 require 'rails_helper'
+require 'devise'
 
-RSpec.describe CakesController do
-  describe "GET index" do
-    it "assigns @cakes" do
-      cake = Cake.create
-      get :index
-      expect(assigns(:cake)).to eq([cake])
+describe CakesController do
+  login_user
+  context "shows a list of cakes" do
+    it "gets :index view" do
+    get :index
     end
+    it "renders index template" do
+      render_template(:index)
+  end
+  context "shows creating new cake page" do
+    it "gets :new view" do
+    get :new
+    end
+    it "renders new template" do
+      render_template(:new)
+    end
+  end
   end
   end
