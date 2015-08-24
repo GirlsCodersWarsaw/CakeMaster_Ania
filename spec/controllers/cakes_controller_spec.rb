@@ -5,6 +5,11 @@ require 'devise'
 describe CakesController do
   login_user
   context "shows a list of cakes" do
+    it "assigns all cakes as @cakes" do
+      cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
+      get :index
+      expect(assigns(:cakes)).to eq([cake])
+    end
     it "renders index template" do
       get :index
       expect(response).to render_template(:index)
@@ -18,18 +23,15 @@ describe CakesController do
   end
   context "create cake with valid attributes" do
     it "saves a new cake" do
-      cake=create(:cake)
-      post :create, session: { name: 'sernik', kind: 'tasty', description: 'sernik sernik sernik' }
+      parameters = {cake: { name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto' } }
+      expect{ post :create, parameters}.to change(Cake, :count).by(1)
       expect(response).to redirect_to(root_path)
     end
   end
-
-  context "with invalid attributes" do
-    it "does not save the new contact" do
-      cake=create(:cake)
-      expect{
-        post :create, session: { name: 'sernik', kind: 'tasty', description: 'sernik sernik sernik' }
-      }.to_not change(Cake,:count)
+  context "create cake with invalid attributes" do
+    it "does not save the new cake" do
+      parameters = {cake: { name: 'ciasto', kind: 'non', description: 'pyszne ciasto' } }
+      expect{ post :create, parameters}.to_not change(Cake, :count)
     end
   end
 end
