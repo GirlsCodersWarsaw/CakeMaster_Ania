@@ -32,6 +32,30 @@ describe CakesController do
     it "does not save the new cake" do
       parameters = {cake: { name: 'ciasto', kind: 'non', description: 'pyszne ciasto' } }
       expect{ post :create, parameters}.to_not change(Cake, :count)
+      expect(response).to render_template("new")
+    end
+  end
+  context "PUT update" do
+    it "updates the requested cake" do
+      cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
+      put :update, {id: cake.to_param, cake: { 'ciasto': 'nowe ciasto' }}
+      expect(assigns(:cake)).to eq(cake)
+    end
+    it "redirects to the cakes list" do
+      cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
+      put :update, {id: cake.to_param, cake: { 'ciasto': 'nowe ciasto' }}
+      expect(response).to redirect_to(root_path)
+    end
+  end
+  context "DELETE destroy" do
+    it "destroys the requested cake" do
+      cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
+      expect {delete :destroy, {id: cake.to_param} }.to change(Cake, :count).by(-1)
+    end
+    it "redirects to the cakes list" do
+      cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
+      delete :destroy, {id: cake.to_param}
+      expect(response).to redirect_to(root_path)
     end
   end
 end
