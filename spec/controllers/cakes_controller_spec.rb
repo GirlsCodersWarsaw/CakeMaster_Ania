@@ -27,10 +27,10 @@ describe CakesController do
       parameters = {cake: { name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto' } }
       expect{ post :create, parameters}.to change(Cake, :count).by(1)
     end
-    it "shows flash messages" do
+    it "shows flash message" do
       parameters = {cake: { name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto' } }
       expect{ post :create, parameters}.to change(Cake, :count).by(1)
-      flash[:notice].should_not be_nil
+      expect(flash[:notice]).to be_present
     end
     it "redirects to cakes list" do
       parameters = {cake: { name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto' } }
@@ -43,10 +43,10 @@ describe CakesController do
       parameters = {cake: { name: 'ciasto', kind: 'non', description: 'pyszne ciasto' } }
       expect{ post :create, parameters}.to_not change(Cake, :count)
     end
-    it "shows flash messages" do
+    it "shows flash message" do
       parameters = {cake: { name: 'ciasto', kind: 'non', description: 'pyszne ciasto' } }
       expect{ post :create, parameters}.to_not change(Cake, :count)
-      flash[:alert].should_not be_nil
+      expect(flash[:alert]).to be_present
     end
     it "redirects to #new action" do
       parameters = {cake: { name: 'ciasto', kind: 'non', description: 'pyszne ciasto' } }
@@ -69,10 +69,10 @@ describe CakesController do
       put :update, {id: cake.to_param, cake: { name: 'nowe ciasto' }}
       expect(assigns(:cake)).to eq(cake)
     end
-    it "shows flash messages" do
+    it "shows flash message" do
       cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
       put :update, {id: cake.to_param, cake: { name: 'nowe ciasto' }}
-      flash[:notice].should_not be_nil
+      expect(flash[:notice]).to be_present
     end
     it "redirects to the cakes list" do
       cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
@@ -82,10 +82,10 @@ describe CakesController do
 
     end
     context "with invalid attributes" do
-    it "shows flash messages" do
+    it "shows flash message" do
       cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
       put :update, {id: cake.to_param, cake: { name: '' }}
-      flash[:alert].should_not be_nil
+      expect(flash[:alert]).to be_present
     end
     it "renders #edit" do
       cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
@@ -98,6 +98,11 @@ describe CakesController do
     it "destroys the requested cake" do
       cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
       expect {delete :destroy, {id: cake.to_param} }.to change(Cake, :count).by(-1)
+    end
+    it "shows flash message" do
+      cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
+      expect {delete :destroy, {id: cake.to_param} }.to change(Cake, :count).by(-1)
+      expect(flash[:notice]).to be_present
     end
     it "redirects to the cakes list" do
       cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
