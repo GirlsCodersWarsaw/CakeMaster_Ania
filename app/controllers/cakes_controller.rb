@@ -29,7 +29,7 @@ class CakesController < ApplicationController
       flash[:notice] = "Zmiany zostały zapisane."
       redirect_to root_path
     else
-      flash[:notice] = "Nie dokonałeś zmian."
+      flash[:alert] = "Nie dokonałeś zmian."
       render "edit"
     end
   end
@@ -43,7 +43,6 @@ class CakesController < ApplicationController
 
   private
   def cake_params
-    params.require(:cake).permit(:name, :kind, :description)
+    params.require(:cake).permit(:name, :kind, :description, cake_attachments_attributes: [:id, :cake_id, :image, :remove_image])
   end
 end
-

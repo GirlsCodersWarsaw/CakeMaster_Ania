@@ -11,6 +11,29 @@
 .alert {
   color:red;
 }
+
+th, td {
+   border: 3px solid pink;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  color: fuchsia;
+  font-size: large;
+}
+
+th, td {
+  height: 50px;
+  width: auto;
+  text-align: center;
+  vertical-align: center;
+  padding: 15px;
+}
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

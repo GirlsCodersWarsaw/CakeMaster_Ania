@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cake:</strong>
+  <%= @cake_attachment.cake_id %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @cake_attachment.image %>
+</p>
+
+<%= link_to 'Edit', edit_cake_attachment_path(@cake_attachment) %> |
+<%= link_to 'Back', cake_attachments_path %>
