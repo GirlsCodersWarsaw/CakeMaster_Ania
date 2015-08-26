@@ -21,7 +21,6 @@ class CakesController < ApplicationController
 
   def edit
     @cake = Cake.find(params[:id])
-    @cake_attachments = @cake.cake_attachments.all
   end
 
   def update
@@ -30,7 +29,7 @@ class CakesController < ApplicationController
       flash[:notice] = "Zmiany zostały zapisane."
       redirect_to root_path
     else
-      flash[:notice] = "Nie dokonałeś zmian."
+      flash[:alert] = "Nie dokonałeś zmian."
       render "edit"
     end
   end

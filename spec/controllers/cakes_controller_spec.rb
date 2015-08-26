@@ -4,7 +4,7 @@ require 'devise'
 
 describe CakesController do
   login_user
-  context "shows a list of cakes" do
+  describe "GET #index" do
     it "assigns all cakes as @cakes" do
       cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
       get :index
@@ -15,14 +15,24 @@ describe CakesController do
       expect(response).to render_template(:index)
     end
   end
-  context "shows creating new cake page" do
+  describe "GET #new" do
     it "renders new template" do
       get :new
       expect(response).to render_template(:new)
     end
   end
+  describe "POST #create" do
   context "create cake with valid attributes" do
     it "saves a new cake" do
+      parameters = {cake: { name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto' } }
+      expect{ post :create, parameters}.to change(Cake, :count).by(1)
+    end
+    it "shows flash messages" do
+      parameters = {cake: { name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto' } }
+      expect{ post :create, parameters}.to change(Cake, :count).by(1)
+      flash[:notice].should_not be_nil
+    end
+    it "redirects to cakes list" do
       parameters = {cake: { name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto' } }
       expect{ post :create, parameters}.to change(Cake, :count).by(1)
       expect(response).to redirect_to(root_path)
@@ -32,22 +42,59 @@ describe CakesController do
     it "does not save the new cake" do
       parameters = {cake: { name: 'ciasto', kind: 'non', description: 'pyszne ciasto' } }
       expect{ post :create, parameters}.to_not change(Cake, :count)
+    end
+    it "shows flash messages" do
+      parameters = {cake: { name: 'ciasto', kind: 'non', description: 'pyszne ciasto' } }
+      expect{ post :create, parameters}.to_not change(Cake, :count)
+      flash[:alert].should_not be_nil
+    end
+    it "redirects to #new action" do
+      parameters = {cake: { name: 'ciasto', kind: 'non', description: 'pyszne ciasto' } }
+      expect{ post :create, parameters}.to_not change(Cake, :count)
       expect(response).to render_template("new")
     end
   end
-  context "PUT update" do
+  end
+  describe "GET edit" do
+    it "assigns the requested cake as @cake" do
+      cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
+      get :edit, {id: cake.to_param}
+      expect(assigns(:cake)).to eq(cake)
+    end
+  end
+  describe "PUT update" do
+    context "with valid attributes" do
     it "updates the requested cake" do
       cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
-      put :update, {id: cake.to_param, cake: { 'ciasto': 'nowe ciasto' }}
+      put :update, {id: cake.to_param, cake: { name: 'nowe ciasto' }}
       expect(assigns(:cake)).to eq(cake)
+    end
+    it "shows flash messages" do
+      cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
+      put :update, {id: cake.to_param, cake: { name: 'nowe ciasto' }}
+      flash[:notice].should_not be_nil
     end
     it "redirects to the cakes list" do
       cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
-      put :update, {id: cake.to_param, cake: { 'ciasto': 'nowe ciasto' }}
+      put :update, {id: cake.to_param, cake: { name: 'nowe ciasto' }}
       expect(response).to redirect_to(root_path)
     end
-  end
-  context "DELETE destroy" do
+
+    end
+    context "with invalid attributes" do
+    it "shows flash messages" do
+      cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
+      put :update, {id: cake.to_param, cake: { name: '' }}
+      flash[:alert].should_not be_nil
+    end
+    it "renders #edit" do
+      cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
+      put :update, {id: cake.to_param, cake: { name: '' }}
+      expect(response).to render_template("edit")
+    end
+    end
+    end
+  describe "DELETE destroy" do
     it "destroys the requested cake" do
       cake = Cake.create!(name: 'ciasto', kind: 'tasty', description: 'pyszne ciasto')
       expect {delete :destroy, {id: cake.to_param} }.to change(Cake, :count).by(-1)
