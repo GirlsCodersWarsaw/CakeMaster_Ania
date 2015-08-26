@@ -1,23 +1,26 @@
 require 'spec_helper'
 require 'rails_helper'
+require 'devise'
 
 feature 'Visitor signs up' do
   scenario 'with valid email and password' do
     sign_up_with 'valid@example.com', 'password'
-
-    expect(page).to have_content('Logout')
+    expect(page).to have_content("Welcome! You have signed up successfully.")
   end
 
   scenario 'with invalid email' do
     sign_up_with 'invalid_email', 'password'
-
-    expect(page).to have_content('Sign up')
+    expect(page).to have_content("Email is invalid")
   end
 
   scenario 'with blank password' do
     sign_up_with 'valid@example.com', ''
+    expect(page).to have_content("Password can't be blank")
+  end
 
-    expect(page).to have_content('Sign up')
+  scenario 'with too short password' do
+    sign_up_with 'valid@example.com', 'passwor'
+    expect(page).to have_content("Password is too short")
   end
 
   def sign_up_with(email, password)
