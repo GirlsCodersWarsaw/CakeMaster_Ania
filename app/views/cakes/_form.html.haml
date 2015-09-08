@@ -1,10 +1,10 @@
 = form_for @cake do |form|
   %p= form.label("nazwa")
-  %p= form.text_field :name
+  %p= form.text_field(:name)
   = resource_errors_for(@cake, :name)
-  %p= form.select :kind, options_for_select([["wybierz", ""], "tasty", "non-gluten", "vegan"], @cake.kind)
+  %p= form.select(:kind, options_for_select([["wybierz", ""], "tasty", "non-gluten", "vegan"], @cake.kind))
   = resource_errors_for(@cake, :kind)
   %p= form.label("przepis")
-  %p= form.text_area :description
+  %p= form.text_area(:description)
   = resource_errors_for(@cake, :description)
-  %p= form.submit "Wyślij"
+  %p= form.submit("Wyślij")
