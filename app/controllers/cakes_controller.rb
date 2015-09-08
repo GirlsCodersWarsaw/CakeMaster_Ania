@@ -6,11 +6,15 @@ class CakesController < ApplicationController
 
   def new
     @cake = Cake.new
+    @cake_attachment = @cake.cake_attachments.build
   end
 
   def create
     @cake = Cake.new cake_params
     if @cake.save
+      params[:cake_attachments]['image'].each do |img|
+      @cake_attachment = @cake.cake_attachments.create!(:image => img)
+      end
       flash[:notice] = "Gratulacje! Dodałeś ciasto."
       redirect_to root_path
     else
@@ -21,6 +25,7 @@ class CakesController < ApplicationController
 
   def edit
     @cake = Cake.find(params[:id])
+    @cake_attachments = @cake.cake_attachments.all
   end
 
   def update
