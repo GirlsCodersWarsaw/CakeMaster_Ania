@@ -1,8 +1,10 @@
 %table
   %tr
     %th Nazwa ciasta
+    %th Zdjęcie
     %th Rodzaj ciasta
     %th Przepis
+    %th Usuń ciasto
   = render partial: "cake", collection: @cakes
 %p
-  = link_to "Dodaj ciasto", new_cake_path
+  %button= link_to "Dodaj ciastko", new_cake_path

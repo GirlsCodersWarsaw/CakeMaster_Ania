@@ -1,6 +1,6 @@
 %tr
-  %td
-    = link_to cake.name, edit_cake_path(cake)
-    = link_to "Usuń", cake_path(cake), method: :delete, data: {confirm: "Are you sure?"}
+  %td= link_to cake.name, edit_cake_path(cake)
+  %td= image_tag cake.image.url(:thumb)
   %td= cake.kind
   %td= cake.description
+  %td= link_to "Usuń", cake_path(cake), method: :delete, data: {confirm: "Are you sure?"}

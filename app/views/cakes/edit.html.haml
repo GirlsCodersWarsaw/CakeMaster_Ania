@@ -1,2 +1,5 @@
 %h1 Edytuj ciasto:
+- @cake_attachments.each do |p|
+  %p= image_tag p.image_url
+  %p= link_to "Edytuj zdjęcie", edit_cake_attachment_path(p)
 = render "form"
