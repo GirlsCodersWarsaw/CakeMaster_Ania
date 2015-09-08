@@ -1,0 +1,8 @@
+%table
+  %tr
+    %th Nazwa ciasta
+    %th Rodzaj ciasta
+    %th Przepis
+  = render partial: "cake", collection: @cakes
+%p
+  = link_to "Dodaj ciasto", new_cake_path

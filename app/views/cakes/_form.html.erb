@@ -1,17 +1,11 @@
-<%= form_for(@cake, :html => { :multipart => true }) do |form| %>
+<%= form_for @cake do |form| %>
   <p><%= form.label("nazwa") %></p>
   <p><%= form.text_field :name %></p>
   <%= resource_errors_for(@cake, :name) %>
-  <p><%= form.select :kind, options_for_select([["wybierz", ""], "tasty", "non-gluten", "vegan"], @cake.kind) %></p>
+  <p><%= form.select :kind, options_for_select([["wybierz", ""], "tasty", "non-gluten", "vegan"]) %></p>
   <%= resource_errors_for(@cake, :kind) %>
   <p><%= form.label("przepis") %></p>
   <p><%= form.text_area :description %></p>
   <%= resource_errors_for(@cake, :description) %>
-  <%= form.fields_for :cake_attachments do |p| %>
-    <div class="field">
-      <%= p.file_field :image, :multiple => true, name: "cake_attachments[image][]" if @cake.image=present? %>
-      <%= p.check_box :remove_image %>Usuń zdjęcie
-    </div>
-  <% end %>
   <p><%= form.submit "Wyślij" %></p>
 <% end %>
