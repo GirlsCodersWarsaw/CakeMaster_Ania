@@ -50,6 +50,10 @@ group :development, :test do
 
   gem 'devise'
 
+  gem 'carrierwave'
+  gem 'mini_magick', '~> 3.7'
+  gem 'carrierwave-dropbox'
+  
   gem 'rspec-rails'
   gem 'capybara'
   gem 'fuubar'
