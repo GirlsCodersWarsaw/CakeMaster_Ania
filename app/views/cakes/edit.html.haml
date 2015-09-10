@@ -3,3 +3,8 @@
   %p= image_tag p.image_url
   %p= link_to "Edytuj zdjęcie", edit_cake_attachment_path(p)
 = render "form"
+= fields_for :cake_attachments do |p|
+  .field
+    = p.label :image
+    %br
+      = p.file_field :image, :multiple => true, name: "cake_attachments[image][]" if @cake.image=present?

@@ -2,6 +2,7 @@ class CakesController < ApplicationController
 
   def index
     @cakes = Cake.all
+    #@cake_attachments = @cake.cake_attachments.all
   end
 
   def new
@@ -10,10 +11,11 @@ class CakesController < ApplicationController
   end
 
   def create
-    @cake = Cake.new cake_params
+    @cake = Cake.new(cake_params)
+
     if @cake.save
       params[:cake_attachments]['image'].each do |img|
-      @cake_attachment = @cake.cake_attachments.create!(:image => img)
+        @cake_attachment = @cake.cake_attachments.create!(:image => img)
       end
       flash[:notice] = "Gratulacje! Dodałeś ciasto."
       redirect_to root_path
@@ -22,6 +24,7 @@ class CakesController < ApplicationController
       render action: "new"
     end
   end
+
 
   def edit
     @cake = Cake.find(params[:id])
@@ -32,7 +35,7 @@ class CakesController < ApplicationController
     @cake = Cake.find(params[:id])
     if @cake.update(cake_params)
       params[:cake_attachments]['image'].each do |img|
-      @cake_attachment = @cake.cake_attachments.create!(:image => img)
+        @cake_attachment = @cake.cake_attachments.create!(:image => img)
       end
       flash[:notice] = "Zmiany zostały zapisane."
       redirect_to root_path

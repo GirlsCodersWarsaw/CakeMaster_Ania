@@ -10,6 +10,7 @@ class CakeAttachmentsController < ApplicationController
   # GET /cake_attachments/1
   # GET /cake_attachments/1.json
   def show
+    @cake_attachments = @cake.cake_attachments.all
   end
 
   # GET /cake_attachments/new
@@ -39,14 +40,21 @@ class CakeAttachmentsController < ApplicationController
 
   # PATCH/PUT /cake_attachments/1
   # PATCH/PUT /cake_attachments/1.json
+  # def update
+  #   respond_to do |format|
+  #     if @cake_attachment.update(cake_attachment_params)
+  #       format.html { redirect_to @cake_attachment, notice: 'Cake attachment was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @cake_attachment }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @cake_attachment.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
   def update
     respond_to do |format|
-      if @cake_attachment.update(cake_attachment_params)
-        format.html { redirect_to @cake_attachment, notice: 'Cake attachment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cake_attachment }
-      else
-        format.html { render :edit }
-        format.json { render json: @cake_attachment.errors, status: :unprocessable_entity }
+      if @post_attachment.update(post_attachment_params)
+        format.html { redirect_to @post_attachment.post, notice: 'Post attachment was successfully updated.' }
       end
     end
   end
