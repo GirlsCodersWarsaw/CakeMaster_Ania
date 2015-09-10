@@ -7,9 +7,10 @@
   %p= form.label("przepis")
   %p= form.text_area :description
   = resource_errors_for(@cake, :description)
-  = form.fields_for :cake_attachments do |p|
-    .field
-      = p.label :image
-      %br
-        = p.file_field :image, :multiple => true, name: "cake_attachments[image][]" if @cake.image=present?
+  %p= form.file_field :image
+  %p= image_tag @cake.image.url(:original) if @cake.image=present?
+  %p
+    %label
+      = form.check_box :remove_image
+      Usuń zdjęcie
   %p= form.submit "Wyślij"
