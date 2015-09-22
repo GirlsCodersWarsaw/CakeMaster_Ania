@@ -1,2 +1,6 @@
 # CakeMaster_Ania
-This is Ania's training project to get to know Rails.
+Training Rails project.
+An application for making a list of cakes with receipes.
+
+Simple CRUD Rails app with Devise user authentication and Carriervave gem for uploading images.
+
